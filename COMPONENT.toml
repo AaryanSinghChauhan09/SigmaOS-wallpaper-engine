@@ -1,0 +1,16 @@
+[component]
+name = "SigmaOS-wallpaper-engine"
+tier = 3
+stability = "scaffold"
+language = "rust"
+description = "Dynamic desktop wallpaper daemon supporting multi-monitor display and slideshow transitions"
+upstream = ["https://github.com/omacom/owe"]
+
+[contract]
+provides = ["wallpaper-daemon", "multi-monitor-background", "slideshow-timer"]
+depends_on = []
+
+[maturity]
+status = "Scaffold"
+test_evidence = "Compiles and passes AAA unit tests"
+next_milestone = "Hardware and runtime integration"

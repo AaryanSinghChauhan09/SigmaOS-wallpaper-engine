@@ -1,11 +1,34 @@
-//! SigmaOS-wallpaper-engine — Dynamic wallpaper and background engine for SigmaOS
-//!
-//! Part of the SigmaOS multi-repository ecosystem.
-//! See https://github.com/AaryanSinghChauhan09/SigmaOS for details.
+#[derive(Debug, Clone)]
+pub struct MonitorBackground {
+    pub output_name: String,
+    pub image_path: String,
+}
 
-#![allow(dead_code)]
+#[derive(Debug, Default)]
+pub struct WallpaperManager {
+    backgrounds: Vec<MonitorBackground>,
+}
 
-/// Module entry point for SigmaOS-wallpaper-engine
-pub fn version() -> &'static str {
-    env!("CARGO_PKG_VERSION")
+impl WallpaperManager {
+    pub fn new() -> Self { Self::default() }
+    pub fn set_background(&mut self, output: &str, path: &str) {
+        self.backgrounds.push(MonitorBackground {
+            output_name: output.to_string(),
+            image_path: path.to_string(),
+        });
+    }
+    pub fn get_image(&self, output: &str) -> Option<&str> {
+        self.backgrounds.iter().find(|b| b.output_name == output).map(|b| b.image_path.as_str())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_wallpaper_assignment() {
+        let mut mgr = WallpaperManager::new();
+        mgr.set_background("DP-1", "/usr/share/wallpapers/sigma-dark.png");
+        assert_eq!(mgr.get_image("DP-1"), Some("/usr/share/wallpapers/sigma-dark.png"));
+    }
 }
