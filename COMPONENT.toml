@@ -1,7 +1,7 @@
 [component]
 name = "SigmaOS-wallpaper-engine"
 tier = 3
-stability = "scaffold"
+stability = "beta"
 language = "rust"
 description = "Wallpaper set / slideshow / randomiser"
 upstream = ["https://github.com/omacom/owe"]
@@ -11,6 +11,6 @@ provides = ["wallpaper-daemon", "multi-monitor-background", "slideshow-timer"]
 depends_on = ["SigmaOS-system"]
 
 [maturity]
-status = "Scaffold"
+status = "Implemented"
 test_evidence = "Compiles and passes AAA unit tests"
 next_milestone = "Hardware and runtime integration"
